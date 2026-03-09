@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./Analytics.css";
+import API_URL from '../config';
 
 export default function Analytics() {
 
@@ -20,7 +21,7 @@ export default function Analytics() {
       try {
 
         const res = await axios.get(
-          "http://localhost:5000/api/analytics/user/64ab1234"
+          `${API_URL}/analytics/user/64ab1234`
         );
 
         console.log("API Data:", res.data);

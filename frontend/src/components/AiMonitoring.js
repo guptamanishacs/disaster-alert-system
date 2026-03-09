@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Bar } from "react-chartjs-2";
+import API_URL from '../config';
 
 export default function AiMonitoring() {
   const [aiLogs, setAiLogs] = useState([]);
 
   useEffect(()=>{
-    axios.get("http://localhost:5000/api/ai_logs")
+    axios.get(`${API_URL}/ai_logs`)
       .then(res => setAiLogs(res.data));
   },[]);
 

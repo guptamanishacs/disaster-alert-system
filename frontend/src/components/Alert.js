@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./Alert.css";
+import API_URL from '../config';
 
 export default function Alert() {
 
@@ -12,7 +13,7 @@ export default function Alert() {
 
   const fetchAlerts = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/alerts");
+      const res = await axios.get(`${API_URL}/alerts`);
       setAlerts(res.data);
     } catch (err) {
       console.log("Error fetching alerts:", err);
@@ -21,7 +22,7 @@ export default function Alert() {
 
   const markSafe = async (alertId) => {
     try {
-      await axios.post("http://localhost:5000/api/alerts/safe", {
+      await axios.post(`${API_URL}/alerts/safe`, {
         alertId: alertId
       });
 

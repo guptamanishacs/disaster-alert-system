@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./Simulation.css"; // Make sure this file exists or remove this line
+import API_URL from '../config';
 
 export default function Simulation() {
   const [aiData, setAiData] = useState([]); // always an array
@@ -10,7 +11,7 @@ export default function Simulation() {
   const fetchAI = async () => {
     try {
       setLoading(true);
-      const res = await axios.get("http://localhost:5000/api/ai/predictions");
+      const res = await axios.get(`${API_URL}/ai/predictions`);
       console.log("AI API response:", res.data); // debug
       // If API returns { success: true, data: [...] }
       if (res.data && Array.isArray(res.data.data)) {

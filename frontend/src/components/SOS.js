@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./SOS.css";
+import API_URL from '../config';
 
 export default function SOS() {
 
@@ -19,7 +20,7 @@ const [loading,setLoading] = useState(false);
 // FETCH SOS HISTORY
 const fetchSOS = async () => {
  try{
-  const res = await axios.get("http://localhost:5000/api/sos");
+  const res = await axios.get(`${API_URL}/sos`);
   setSosList(res.data);
  }catch(err){
   console.log(err);
@@ -39,7 +40,7 @@ const sendSOS = async () => {
 
   setLoading(true);
 
-  await axios.post("http://localhost:5000/api/sos",{
+  await axios.post(`${API_URL}/sos`,{
    ...form,
    status:"Active"
   });
@@ -89,7 +90,7 @@ const detectLocation = () => {
 
 // UPDATE STATUS (ADMIN ACTION)
 const updateStatus = async(id,status)=>{
- await axios.put(`http://localhost:5000/api/sos/${id}`,{status});
+ await axios.put(`${API_URL}/sos/${id}`,{status});
  fetchSOS();
 };
 

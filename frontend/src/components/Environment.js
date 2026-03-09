@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./Environment.css";
+import API_URL from '../config';
 
 export default function Environment() {
 
@@ -17,7 +18,7 @@ export default function Environment() {
 
     try{
 
-      const res = await axios.get("http://localhost:5000/api/sensors");
+      const res = await axios.get(`${API_URL}/sensors`);
 
       if(res.data.success){
         setSensors(res.data.data);

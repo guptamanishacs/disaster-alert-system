@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./AISimulation.css";
+import API_URL from '../config';
 
 export default function AISimulation() {
   const [aiData, setAiData] = useState([]);
@@ -20,7 +21,7 @@ export default function AISimulation() {
   const fetchAI = async () => {
     try {
       setLoading(true);
-      const res = await axios.get("http://localhost:5000/api/ai/predictions");
+      const res = await axios.get(`${API_URL}/ai/predictions`);
       setAiData(res.data.data || []); // ✅ use res.data.data if backend sends {success,data}
       setLoading(false);
     } catch (err) {
@@ -45,7 +46,7 @@ export default function AISimulation() {
   // Run simulation
   const runSimulation = async () => {
     try {
-      const res = await axios.post("http://localhost:5000/api/ai/simulate", {
+      const res = await axios.post(`${API_URL}/ai/simulate`, {
         ...simulation,
         rainfall: Number(simulation.rainfall),
         waterLevel: Number(simulation.waterLevel),

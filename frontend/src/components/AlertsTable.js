@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { saveAs } from "file-saver";
 import "./AlertsTable.css";
+import API_URL from '../config';
 
 export default function AlertsTable() {
   const [alerts, setAlerts] = useState([]);
@@ -17,7 +18,7 @@ export default function AlertsTable() {
   // Fetch all alerts from backend
   const fetchAlerts = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/alerts");
+      const res = await axios.get(`${API_URL}/alerts`);
       setAlerts(res.data);
     } catch (err) {
       console.error("Fetch alerts error:", err);
@@ -60,10 +61,10 @@ export default function AlertsTable() {
     try {
       if (editingAlert._id) {
         // Update existing alert
-        await axios.put(`http://localhost:5000/api/alerts/${editingAlert._id}`, editingAlert);
+        await axios.put(`${API_URL}/alerts/${editingAlert._id}`, editingAlert);
       } else {
         // Add new alert
-        await axios.post("http://localhost:5000/api/alerts", editingAlert);
+        await axios.post(`${API_URL}/alerts`, editingAlert);
       }
       setShowModal(false);
       setEditingAlert(null);
@@ -77,7 +78,7 @@ export default function AlertsTable() {
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this alert?")) {
       try {
-        await axios.delete(`http://localhost:5000/api/alerts/${id}`);
+        await axios.delete(`${API_URL}/alerts/${id}`);
         fetchAlerts();
       } catch (err) {
         console.error("Delete alert failed:", err);
@@ -88,7 +89,7 @@ export default function AlertsTable() {
   // Acknowledge / Resolve
   const handleStatusChange = async (alert, newStatus) => {
     try {
-      await axios.put(`http://localhost:5000/api/alerts/${alert._id}`, {
+      await axios.put(`${API_URL}/alerts/${alert._id}`, {
         ...alert,
         status: newStatus,
         resolved: newStatus === "Resolved" ? new Date() : alert.resolved,
@@ -105,7 +106,7 @@ export default function AlertsTable() {
   };
 
   const bulkResolve = async () => {
-    await axios.put("http://localhost:5000/api/alerts/bulk", {
+    await axios.put(`${API_URL}/alerts/bulk`, {
       ids: selectedAlerts,
       update: { status: "Resolved", resolved: new Date() },
     });
@@ -114,7 +115,7 @@ export default function AlertsTable() {
   };
 
   const bulkDelete = async () => {
-    await axios.post("http://localhost:5000/api/alerts/bulk-delete", { ids: selectedAlerts });
+    await axios.post(`${API_URL}/alerts/bulk-delete`, { ids: selectedAlerts });
     setSelectedAlerts([]);
     fetchAlerts();
   };

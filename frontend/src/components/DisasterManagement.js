@@ -1,18 +1,19 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import "./DisasterManagement.css";
+import API_URL from '../config';
 
 export default function DisasterManagement() {
   const [disasters, setDisasters] = useState([]);
   const [newDisaster, setNewDisaster] = useState({type:'',severity:'low',lat:'',lng:'',probability:0});
 
   useEffect(()=>{
-    axios.get("http://localhost:5000/api/disasters")
+    axios.get(`${API_URL}/disasters`)
       .then(res => setDisasters(res.data));
   },[]);
 
   const handleAdd = () => {
-    axios.post("http://localhost:5000/api/disasters", newDisaster)
+    axios.post(`${API_URL}/disasters`, newDisaster)
       .then(res => setDisasters([...disasters,res.data]));
   };
 

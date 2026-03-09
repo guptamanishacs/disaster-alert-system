@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import API_URL from '../config';
 
 export default function SOSHistory({ user }) {
   const [sosList, setSosList] = useState([]);
@@ -8,7 +9,7 @@ export default function SOSHistory({ user }) {
     if (!user) return;
 
     axios
-      .get(`http://localhost:5000/api/sos/${user._id}`)
+      .get(`${API_URL}/sos/${user._id}`)
       .then((res) => setSosList(res.data))
       .catch((err) => console.log(err));
   }, [user]);

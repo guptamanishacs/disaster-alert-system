@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./SensorCard.css";
+import API_URL from '../config';
 
 export default function SensorCards() {
 
@@ -25,7 +26,7 @@ export default function SensorCards() {
 
   const loadSensors = async () => {
     try{
-      const res = await axios.get("http://localhost:5000/api/sensors");
+      const res = await axios.get(`${API_URL}/sensors`);
       if(res.data.success){
         setSensors(res.data.data);
       }
@@ -51,14 +52,14 @@ export default function SensorCards() {
         const sensor = sensors[editIndex];
 
         await axios.put(
-          `http://localhost:5000/api/sensors/${sensor.sensorId}`,
+          `${API_URL}/sensors/${sensor.sensorId}`,
           form
         );
 
       }else{
 
         await axios.post(
-          "http://localhost:5000/api/sensors",
+          `${API_URL}/sensors`,
           form
         );
 
@@ -93,7 +94,7 @@ export default function SensorCards() {
     try{
 
       await axios.delete(
-        `http://localhost:5000/api/sensors/${sensor.sensorId}`
+        `${API_URL}/sensors/${sensor.sensorId}`
       );
 
       loadSensors();
@@ -118,7 +119,7 @@ export default function SensorCards() {
     try{
 
       await axios.put(
-        `http://localhost:5000/api/sensors/${sensor.sensorId}`,
+        `${API_URL}/sensors/${sensor.sensorId}`,
         { status:newStatus }
       );
 
@@ -140,7 +141,7 @@ export default function SensorCards() {
     try{
 
       await axios.put(
-        `http://localhost:5000/api/sensors/${sensor.sensorId}`,
+        `${API_URL}/sensors/${sensor.sensorId}`,
         {
           value:random,
           lastUpdated:new Date().toLocaleTimeString()

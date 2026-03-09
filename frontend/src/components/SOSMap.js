@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import API_URL from '../config';
 
 export default function AdminSOSTable() {
   const [sosList, setSosList] = useState([]);
@@ -8,7 +9,7 @@ export default function AdminSOSTable() {
   // FETCH SOS HISTORY
   const fetchSOS = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/sos");
+      const res = await axios.get(`${API_URL}/sos`);
       setSosList(res.data);
     } catch (err) {
       console.log(err);
@@ -18,7 +19,7 @@ export default function AdminSOSTable() {
   // UPDATE STATUS
   const updateStatus = async (id, status) => {
     try {
-      await axios.put(`http://localhost:5000/api/sos/${id}`, { status });
+      await axios.put(`${API_URL}/sos/${id}`, { status });
       fetchSOS();
     } catch (err) {
       console.log(err);
@@ -28,7 +29,7 @@ export default function AdminSOSTable() {
   // ASSIGN TEAM
   const assignTeam = async (id, team) => {
     try {
-      await axios.put(`http://localhost:5000/api/sos/${id}`, { team });
+      await axios.put(`${API_URL}/sos/${id}`, { team });
       fetchSOS();
     } catch (err) {
       console.log(err);
@@ -38,7 +39,7 @@ export default function AdminSOSTable() {
   // DELETE SOS
   const deleteSOS = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/sos/${id}`);
+      await axios.delete(`${API_URL}/sos/${id}`);
       fetchSOS();
     } catch (err) {
       console.log(err);

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import API_URL from '../config';
 
 const Settings = () => {
 
@@ -29,14 +30,14 @@ const Settings = () => {
         let res;
 
         if (role === "admin") {
-          res = await axios.get("http://localhost:5000/api/admin-settings");
+          res = await axios.get(`${API_URL}/admin-settings`);
 
           if (res.data.length > 0) {
             setSettings(res.data[0]);
           }
         } else {
           res = await axios.get(
-            `http://localhost:5000/api/user-settings?userId=${userId}`
+            `${API_URL}/user-settings?userId=${userId}`
           );
 
           if (res.data) {
@@ -67,9 +68,9 @@ const Settings = () => {
       setLoading(true);
 
       if (role === "admin") {
-        await axios.post("http://localhost:5000/api/admin-settings", settings);
+        await axios.post(`${API_URL}/admin-settings`, settings);
       } else {
-        await axios.post("http://localhost:5000/api/user-settings", {
+        await axios.post(`${API_URL}/user-settings`, {
           userId,
           ...settings,
         });

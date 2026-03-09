@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import "./DisasterManager.css";
+import API_URL from '../config';
 
 function DisasterManager() {
   const [disasters, setDisasters] = useState([]);
@@ -14,7 +15,7 @@ function DisasterManager() {
 
   // Fetch disasters from backend
   const fetchDisasters = async () => {
-    const res = await axios.get("http://localhost:5000/api/disasters");
+    const res = await axios.get(`${API_URL}/disasters`);
     setDisasters(res.data);
   };
 
@@ -30,14 +31,14 @@ function DisasterManager() {
   // Add disaster
   const handleAdd = async () => {
     if (!form.type || !form.severity || !form.region) return alert("Fill all required fields!");
-    await axios.post("http://localhost:5000/api/disasters/add", form);
+    await axios.post(`${API_URL}/disasters/add`, form);
     setForm({ type: "", severity: "", region: "", guidelines: "", datasetName: "" });
     fetchDisasters();
   };
 
   // Delete disaster
   const handleDelete = async (id) => {
-    await axios.delete(`http://localhost:5000/api/disasters/${id}`);
+    await axios.delete(`${API_URL}/disasters/${id}`);
     fetchDisasters();
   };
 

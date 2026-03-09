@@ -3,6 +3,7 @@ import axios from "axios";
 import "./AnalyticsCharts.css";
 
 import {
+import API_URL from '../config';
 LineChart,
 Line,
 XAxis,
@@ -30,7 +31,7 @@ const fetchAnalytics = async () => {
 
 try{
 
-const res = await axios.get("http://localhost:5000/api/admin/analytics");
+const res = await axios.get(`${API_URL}/admin/analytics`);
 setData(res.data);
 
 setLastUpdated(new Date().toLocaleTimeString());
