@@ -8,9 +8,9 @@ export default function SensorCards() {
   const role = "Admin";   // Admin → full access | User → read only
 
   const [sensors,setSensors] = useState([]);
-  const [alerts,setAlerts] = useState([]);
+  const [alerts,setAlerts] = useState([]);  // eslint-disable-line no-unused-vars
   const [search,setSearch] = useState("");
-  const [selected,setSelected] = useState(null);
+  const [selected,setSelected] = useState(null);  // eslint-disable-line no-unused-vars
   const [showModal,setShowModal] = useState(false);
   const [editIndex,setEditIndex] = useState(null);
 

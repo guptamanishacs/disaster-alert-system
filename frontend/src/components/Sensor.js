@@ -5,7 +5,7 @@ import API_URL from '../config';
 
 export default function Sensor() {
 
-  const role = "User";   // 🔒 Only user access
+  // const role = "User";   // 🔒 Only user access
 
   const [sensors, setSensors] = useState([]);
   const [loading, setLoading] = useState(true);
