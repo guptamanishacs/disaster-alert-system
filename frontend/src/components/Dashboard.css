@@ -1,0 +1,84 @@
+body {
+  margin: 0;
+  font-family: Poppins, sans-serif;
+  background: linear-gradient(135deg, #0f172a, #020617);
+  color: white;
+}
+
+.dashboard {
+  padding: 20px;
+}
+
+/* TOPBAR */
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+/* GRID */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+/* CARD */
+.card {
+  background: rgba(30, 41, 59, 0.7);
+  padding: 15px;
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 15px #22c55e;
+}
+
+/* MAP */
+iframe {
+  width: 100%;
+  height: 150px;
+  border-radius: 10px;
+}
+
+/* RISK COLORS */
+.risk.low { color: #22c55e; }
+.risk.moderate { color: #facc15; }
+.risk.high { color: #ef4444; }
+
+/* SOS BUTTON */
+.sos {
+  background: red;
+  padding: 10px;
+  border: none;
+  color: white;
+  border-radius: 30px;
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 red; }
+  100% { box-shadow: 0 0 20px 10px transparent; }
+}
+
+/* INPUT */
+input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border-radius: 5px;
+  border: none;
+}
+
+button {
+  margin-top: 8px;
+  padding: 8px;
+  border: none;
+  background: #22c55e;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}

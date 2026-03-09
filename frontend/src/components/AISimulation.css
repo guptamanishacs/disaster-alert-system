@@ -1,0 +1,56 @@
+.ai-container{
+padding:25px;
+background:#fff;
+border-radius:10px;
+box-shadow:0 4px 10px rgba(0,0,0,0.1);
+}
+
+.ai-container h2{
+margin-bottom:20px;
+}
+
+.simulation-form{
+margin-bottom:25px;
+}
+
+.simulation-form input,
+.simulation-form select{
+display:block;
+width:100%;
+padding:10px;
+margin-bottom:10px;
+border:1px solid #ccc;
+border-radius:5px;
+}
+
+.simulation-form button{
+background:#007bff;
+color:white;
+border:none;
+padding:10px 15px;
+border-radius:5px;
+cursor:pointer;
+}
+
+.simulation-result{
+background:#f8f9fa;
+padding:15px;
+margin-bottom:20px;
+border-radius:6px;
+}
+
+.prediction-table table{
+width:100%;
+border-collapse:collapse;
+}
+
+.prediction-table th,
+.prediction-table td{
+border:1px solid #ddd;
+padding:10px;
+text-align:center;
+}
+
+.prediction-table th{
+background:#f0f0f0;
+}

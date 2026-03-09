@@ -1,0 +1,22 @@
+.cr-container {
+  padding: 20px;
+  background: #fff0f5;
+  border-radius: 10px;
+  margin: 20px 0;
+}
+
+.cr-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.cr-table th, .cr-table td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: center;
+}
+
+.cr-table th {
+  background: #9b59b6;
+  color: white;
+}

@@ -1,0 +1,190 @@
+/* ===============================
+   MAIN LAYOUT
+================================= */
+.overview-container {
+  padding: 25px;
+  font-family: "Segoe UI", sans-serif;
+  background-color: #f5f7fa;
+  color: #000;
+}
+
+/* ===============================
+   DASHBOARD TITLE
+================================= */
+.overview-container h2 {
+  font-size: 30px;
+  font-weight: 700;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+/* ===============================
+   COMMON CARD STYLE
+================================= */
+.live-metrics,
+.selected-location,
+.alerts-panel,
+.sos-panel,
+.trend-chart,
+.map-view {
+  margin-bottom: 22px;
+  padding: 20px;
+  border-radius: 14px;
+  background: #ffffff;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  transition: 0.3s ease;
+}
+
+/* Hover Effect */
+.live-metrics:hover,
+.selected-location:hover,
+.alerts-panel:hover,
+.sos-panel:hover,
+.trend-chart:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.12);
+}
+
+/* ===============================
+   SECTION HEADINGS
+================================= */
+.live-metrics h3,
+.selected-location h3,
+.alerts-panel h3,
+.sos-panel h3,
+.trend-chart h3,
+.map-view h3 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+/* ===============================
+   LIVE METRICS GRID
+================================= */
+.live-metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.metric-box {
+  padding: 15px 18px;
+  border-radius: 10px;
+  background: #f8f9fa;
+  font-size: 16px;
+  font-weight: 600;
+  transition: 0.3s ease;
+}
+
+.metric-box:hover {
+  background: #eef1f4;
+}
+
+/* ===============================
+   RISK TEXT COLORS
+================================= */
+.metric-safe {
+  color: green;
+  font-weight: 700;
+}
+
+.metric-warning {
+  color: orange;
+  font-weight: 700;
+}
+
+.metric-danger {
+  color: red;
+  font-weight: 700;
+}
+
+/* ===============================
+   SELECTED LOCATION
+================================= */
+.selected-location {
+  border-left: 6px solid #333;
+}
+
+/* Risk Based Background */
+.selected-location.low {
+  border-color: green;
+  background-color: #e6f8e6;
+}
+
+.selected-location.medium {
+  border-color: orange;
+  background-color: #fff4e6;
+}
+
+.selected-location.high {
+  border-color: red;
+  background-color: #ffe6e6;
+}
+
+.selected-location p {
+  margin: 8px 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/* ===============================
+   ALERTS & SOS
+================================= */
+.alerts-panel p,
+.sos-panel p {
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  background: #f8f9fa;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+/* ===============================
+   TREND CHART
+================================= */
+.trend-chart {
+  padding-bottom: 25px;
+}
+
+.trend-chart canvas {
+  margin-top: 15px;
+}
+
+/* ===============================
+   MAP SECTION
+================================= */
+.map-view {
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.map-view .leaflet-container {
+  border-radius: 12px;
+}
+
+/* ===============================
+   SCROLLBAR
+================================= */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #bbb;
+  border-radius: 6px;
+}
+
+/* ===============================
+   RESPONSIVE
+================================= */
+@media (max-width: 768px) {
+  .overview-container {
+    padding: 15px;
+  }
+
+  .live-metrics {
+    grid-template-columns: 1fr;
+  }
+}

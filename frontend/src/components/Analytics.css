@@ -1,0 +1,65 @@
+.analytics-page{
+  margin-left:220px;
+  padding:30px;
+  font-family: Arial, sans-serif;
+}
+
+.analytics-title{
+  font-size:24px;
+  margin-bottom:25px;
+}
+
+.analytics-cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(200px,1fr));
+  gap:20px;
+}
+
+.analytics-card{
+  padding:20px;
+  border-radius:12px;
+  text-align:center;
+  box-shadow:0 3px 8px rgba(0,0,0,0.1);
+  transition:0.2s;
+}
+
+.analytics-card:hover{
+  transform:translateY(-4px);
+}
+
+.analytics-card h3{
+  font-size:16px;
+  margin-bottom:10px;
+}
+
+.analytics-card p{
+  font-size:26px;
+  font-weight:600;
+}
+
+/* colors */
+
+.blue{
+  background:#3b82f6;
+  color:white;
+}
+
+.red{
+  background:#ef4444;
+  color:white;
+}
+
+.green{
+  background:#22c55e;
+  color:white;
+}
+
+.gray{
+  background:#e5e7eb;
+}
+
+.loading{
+  margin-left:220px;
+  padding:30px;
+  font-size:18px;
+}

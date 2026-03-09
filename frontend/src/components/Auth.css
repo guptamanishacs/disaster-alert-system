@@ -1,0 +1,68 @@
+.alert-container {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.alert-form {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.alert-form input,
+.alert-form select {
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.alert-form button {
+  grid-column: span 3;
+  padding: 10px;
+  background: #2563eb;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.alert-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
+
+.alert-card {
+  padding: 15px;
+  border-radius: 10px;
+  color: white;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+/* COLOR LEVELS */
+.alert-card.low { background: #22c55e; }
+.alert-card.medium { background: #facc15; color: black; }
+.alert-card.high { background: #ef4444; }
+.alert-card.critical { background: #7f1d1d; }
+
+/* BUTTONS */
+.alert-actions {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+.alert-actions button {
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  background: rgba(255,255,255,0.3);
+  color: white;
+}
+
+.alert-actions button:hover {
+  background: rgba(255,255,255,0.6);
+  color: black;
+}
