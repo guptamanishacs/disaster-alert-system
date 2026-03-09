@@ -3,7 +3,6 @@ import axios from "axios";
 import "./AnalyticsCharts.css";
 
 import {
-import API_URL from '../config';
 LineChart,
 Line,
 XAxis,
@@ -17,6 +16,7 @@ Pie,
 Cell,
 Legend
 } from "recharts";
+import API_URL from '../config';
 
 export default function AnalyticsCharts() {
 
