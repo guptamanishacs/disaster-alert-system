@@ -11,6 +11,9 @@ import AdminDashboard from "./components/AdminDashboard";
 import Analytics from "./components/Analytics";
 import AISimulation from "./components/AISimulation";
 
+// Backend API URL from .env
+const API_URL = process.env.REACT_APP_API_URL;
+
 // USER PROTECTED ROUTE
 const UserRoute = ({ children }) => {
   const data = localStorage.getItem("user");
@@ -34,9 +37,9 @@ function App() {
     <Router>
       <Routes>
         {/* Public Pages */}
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/" element={<LandingPage API_URL={API_URL} />} />
+        <Route path="/login" element={<LoginPage API_URL={API_URL} />} />
+        <Route path="/register" element={<RegisterPage API_URL={API_URL} />} />
         <Route path="/about" element={<AboutPage />} />
 
         {/* User Dashboard */}
@@ -44,7 +47,7 @@ function App() {
           path="/dashboard"
           element={
             <UserRoute>
-              <UserDashboard />
+              <UserDashboard API_URL={API_URL} />
             </UserRoute>
           }
         />
@@ -54,16 +57,16 @@ function App() {
           path="/admin"
           element={
             <AdminRoute>
-              <AdminDashboard />
+              <AdminDashboard API_URL={API_URL} />
             </AdminRoute>
           }
         />
 
         {/* Analytics */}
-        <Route path="/analytics" element={<Analytics />} />
+        <Route path="/analytics" element={<Analytics API_URL={API_URL} />} />
 
         {/* AI Simulation */}
-        <Route path="/aisimulation" element={<AISimulation />} />
+        <Route path="/aisimulation" element={<AISimulation API_URL={API_URL} />} />
 
         {/* Catch all unknown paths */}
         <Route path="*" element={<Navigate to="/" />} />

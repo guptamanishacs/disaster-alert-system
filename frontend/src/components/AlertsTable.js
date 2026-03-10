@@ -270,7 +270,7 @@ const handleShare = () => {
             </div>
             <div className="modal-buttons">
               <button className="btn-add-alert" onClick={handleSave}>{editingAlert._id ? "Update Alert" : "Add Alert"}</button>
-              <button className="btn-cancel" onClick={() => setShowModal(false)}>Cancel</button>
+              <button clasName="btn-cancel" onClick={() => setShowModal(false)}>Cancel</button>
             </div>
           </div>
         </div>

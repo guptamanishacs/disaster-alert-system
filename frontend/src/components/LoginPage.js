@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "./LoginPage.css";
-import API_URL from '../config';
+import API_URL from "../config"; // ✅ Backend URL from config.js
 
 export default function LoginPage() {
   const navigate = useNavigate();
 
-  const [role, setRole] = useState("user"); // user or admin
+  const [role, setRole] = useState("user"); // "user" or "admin"
   const [showPass, setShowPass] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -22,7 +22,7 @@ export default function LoginPage() {
     }
 
     try {
-      // 🔗 Backend API call
+      // 🔗 API call to backend
       const res = await axios.post(`${API_URL}/users/login`, {
         email,
         password,
@@ -30,7 +30,6 @@ export default function LoginPage() {
 
       console.log("✅ Backend Response:", res.data);
 
-      // ✅ backend returns direct user object
       const userData = res.data;
 
       // ❗ ROLE VALIDATION
@@ -44,10 +43,9 @@ export default function LoginPage() {
         return;
       }
 
-      // 💾 Save user
+      // 💾 Save user in localStorage
       localStorage.setItem("user", JSON.stringify(userData));
 
-      // 🎉 Success alert
       alert(`✅ Welcome ${userData.name}`);
 
       // 🚀 Redirect
@@ -56,11 +54,9 @@ export default function LoginPage() {
       } else {
         navigate("/dashboard");
       }
-
     } catch (err) {
       console.error("❌ Login Error:", err);
 
-      // 🔥 important fix (msg OR message)
       const errorMsg =
         err.response?.data?.msg ||
         err.response?.data?.message ||
@@ -73,7 +69,6 @@ export default function LoginPage() {
   return (
     <div className="login-container">
       <div className="login-card">
-
         <h1 className="title">🔐 Secure Login Portal</h1>
         <p className="subtitle">AI Disaster Prediction & Alert System</p>
 
@@ -98,9 +93,7 @@ export default function LoginPage() {
         <form className="form" onSubmit={handleLogin}>
           <input
             type="email"
-            placeholder={
-              role === "admin" ? "Enter Admin Email" : "Enter Email"
-            }
+            placeholder={role === "admin" ? "Enter Admin Email" : "Enter Email"}
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
@@ -108,21 +101,14 @@ export default function LoginPage() {
 
           <input
             type={showPass ? "text" : "password"}
-            placeholder={
-              role === "admin"
-                ? "Enter Admin Password"
-                : "Enter Password"
-            }
+            placeholder={role === "admin" ? "Enter Admin Password" : "Enter Password"}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
 
           {/* 👁 Show/Hide Password */}
-          <span
-            className="show-pass"
-            onClick={() => setShowPass(!showPass)}
-          >
+          <span className="show-pass" onClick={() => setShowPass(!showPass)}>
             {showPass ? "🙈 Hide Password" : "👁 Show Password"}
           </span>
 
@@ -139,7 +125,6 @@ export default function LoginPage() {
         <div className="login-footer">
           <p>⚠️ Authorized Access Only</p>
         </div>
-
       </div>
     </div>
   );

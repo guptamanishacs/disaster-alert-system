@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./AISimulation.css";
-import API_URL from '../config';
+
+// 🔗 Use backend API URL from .env
+const API_URL = process.env.REACT_APP_API_URL;
 
 export default function AISimulation() {
   const [aiData, setAiData] = useState([]);
@@ -12,20 +14,20 @@ export default function AISimulation() {
     location: "",
     rainfall: "",
     waterLevel: "",
-    windSpeed: ""
+    windSpeed: "",
   });
 
   const [result, setResult] = useState(null);
 
-  // Fetch AI predictions
+  // 🔹 Fetch AI predictions from backend
   const fetchAI = async () => {
     try {
       setLoading(true);
       const res = await axios.get(`${API_URL}/ai/predictions`);
-      setAiData(res.data.data || []); // ✅ use res.data.data if backend sends {success,data}
+      setAiData(res.data.data || []); // backend sends {success, data}
       setLoading(false);
     } catch (err) {
-      console.error(err);
+      console.error("❌ Error fetching AI predictions:", err);
       setLoading(false);
     }
   };
@@ -34,27 +36,28 @@ export default function AISimulation() {
     fetchAI();
   }, []);
 
-  // Handle form change
+  // 🔹 Handle form inputs
   const handleChange = (e) => {
     const { name, value } = e.target;
     setSimulation({
       ...simulation,
-      [name]: value
+      [name]: value,
     });
   };
 
-  // Run simulation
+  // 🔹 Run simulation API call
   const runSimulation = async () => {
     try {
       const res = await axios.post(`${API_URL}/ai/simulate`, {
         ...simulation,
         rainfall: Number(simulation.rainfall),
         waterLevel: Number(simulation.waterLevel),
-        windSpeed: Number(simulation.windSpeed)
+        windSpeed: Number(simulation.windSpeed),
       });
       setResult(res.data);
     } catch (err) {
-      console.error(err);
+      console.error("❌ Error running simulation:", err);
+      alert("Simulation failed! Check console for details.");
     }
   };
 
@@ -73,10 +76,30 @@ export default function AISimulation() {
           <option>Air Pollution</option>
         </select>
 
-        <input name="location" value={simulation.location} placeholder="Location" onChange={handleChange} />
-        <input name="rainfall" value={simulation.rainfall} placeholder="Rainfall (mm)" onChange={handleChange} />
-        <input name="waterLevel" value={simulation.waterLevel} placeholder="Water Level (m)" onChange={handleChange} />
-        <input name="windSpeed" value={simulation.windSpeed} placeholder="Wind Speed (km/h)" onChange={handleChange} />
+        <input
+          name="location"
+          value={simulation.location}
+          placeholder="Location"
+          onChange={handleChange}
+        />
+        <input
+          name="rainfall"
+          value={simulation.rainfall}
+          placeholder="Rainfall (mm)"
+          onChange={handleChange}
+        />
+        <input
+          name="waterLevel"
+          value={simulation.waterLevel}
+          placeholder="Water Level (m)"
+          onChange={handleChange}
+        />
+        <input
+          name="windSpeed"
+          value={simulation.windSpeed}
+          placeholder="Wind Speed (km/h)"
+          onChange={handleChange}
+        />
 
         <button onClick={runSimulation}>Run Simulation</button>
       </div>
@@ -85,10 +108,18 @@ export default function AISimulation() {
       {result && (
         <div className="simulation-result">
           <h3>Simulation Result</h3>
-          <p><strong>Disaster:</strong> {result.type}</p>
-          <p><strong>Location:</strong> {result.location}</p>
-          <p><strong>Probability:</strong> {result.probability}%</p>
-          <p><strong>Risk Level:</strong> {result.risk}</p>
+          <p>
+            <strong>Disaster:</strong> {result.type}
+          </p>
+          <p>
+            <strong>Location:</strong> {result.location}
+          </p>
+          <p>
+            <strong>Probability:</strong> {result.probability}%
+          </p>
+          <p>
+            <strong>Risk Level:</strong> {result.risk}
+          </p>
         </div>
       )}
 
